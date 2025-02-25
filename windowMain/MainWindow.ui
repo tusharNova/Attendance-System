@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>769</width>
+    <height>516</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Attendence</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QMdiArea" name="mdiArea"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>769</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <widget class="QMenu" name="menuCreate">
+    <property name="title">
+     <string>Create</string>
+    </property>
+    <addaction name="actionCreate_Teacher"/>
+    <addaction name="actionCreate_Student"/>
+   </widget>
+   <widget class="QMenu" name="menuList">
+    <property name="title">
+     <string>List</string>
+    </property>
+    <addaction name="actionList_of_Student"/>
+    <addaction name="actionList_of_Teacher"/>
+   </widget>
+   <widget class="QMenu" name="menuReport">
+    <property name="title">
+     <string>Report</string>
+    </property>
+   </widget>
+   <addaction name="menuCreate"/>
+   <addaction name="menuList"/>
+   <addaction name="menuReport"/>
+  </widget>
+  <action name="actionCreate_Teacher">
+   <property name="text">
+    <string>Create Teacher</string>
+   </property>
+  </action>
+  <action name="actionCreate_Student">
+   <property name="text">
+    <string>Create Student</string>
+   </property>
+  </action>
+  <action name="actionList_of_Student">
+   <property name="text">
+    <string>List of student</string>
+   </property>
+  </action>
+  <action name="actionList_of_Teacher">
+   <property name="text">
+    <string>List of Teacher</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
