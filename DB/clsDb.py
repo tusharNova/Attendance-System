@@ -10,8 +10,10 @@ class clsDb():
         try:
             self.cur.execute(query)
             self.conn.commit()
+            return True
         except sqlite3.Error as e:
             print(f"SQLite error: {e}")
+            return False
 
     def selectSql(self ,query):
         try:
