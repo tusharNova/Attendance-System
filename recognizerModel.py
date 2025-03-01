@@ -34,7 +34,6 @@ class MessageWindow(QWidget):
         self.hide()  # Initially hide the window
 
     def show_message(self, message):
-        """Show the message and close it after 2 seconds"""
         self.label.setText(message)
         self.show()
 
@@ -44,13 +43,10 @@ class MessageWindow(QWidget):
 
 # Create message window instance
 message_window = MessageWindow()
-
 # Initialize webcam
 video_capture = cv2.VideoCapture(0)
-
 # Track last recognized person
 last_recognized_name = None
-
 while True:
     ret, frame = video_capture.read()
 
