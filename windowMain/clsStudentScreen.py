@@ -18,7 +18,7 @@ class clsStudentScreen(QMainWindow):
         self.current_frame = None
         self.gender = None
         self.imgName = ""
-        # self.start_camera()
+        self.start_camera()
 
         self.ui.btnClikedImg.clicked.connect(self.captureStudentImage)
         self.ui.btnAddStd.clicked.connect(self.addStudent)
@@ -74,7 +74,7 @@ class clsStudentScreen(QMainWindow):
         query = "insert into StudentTable VALUES(null , '"+name+"', '"+branch+"' , '"+sem+"' , "+rollNo+" ,'"+email+"' ,'"+self.gender+"' ,'"+self.imgName+"' )"
         print(query)
         done = self.db.runSql(query)
-        print(done)
+        # print(done)
         if done:
             QMessageBox.information(self, "Success", f"Student Add Success.")
         else:

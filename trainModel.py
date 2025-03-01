@@ -30,7 +30,7 @@ for person_name in os.listdir(dataset_path):
                 labels.append(person_id)
     person_id +=1
 
-face_recognizer.train(face , np.array(labels))
+face_recognizer.train(faces, np.array(labels))
 
 face_recognizer.save("face_trained.yml")
 np.save("label_dict.npy", label_dict)
