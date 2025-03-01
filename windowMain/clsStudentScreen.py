@@ -18,11 +18,13 @@ class clsStudentScreen(QMainWindow):
         self.current_frame = None
         self.gender = None
         self.imgName = ""
-        self.start_camera()
+        # self.start_camera()
+        self.db = clsDb()
 
         self.ui.btnClikedImg.clicked.connect(self.captureStudentImage)
         self.ui.btnAddStd.clicked.connect(self.addStudent)
-        self.db = clsDb()
+        self.ui.btnSave.clicked.connect(self.createFolder)
+
 
 
 
@@ -43,7 +45,7 @@ class clsStudentScreen(QMainWindow):
         self.timer.stop()
         if self.cap:
             self.cap.release()
-            self.ui.labelVideo.clear()
+            self.ui.labelVideo.clear
 
     def captureStudentImage(self):
         # print("done")
@@ -80,7 +82,20 @@ class clsStudentScreen(QMainWindow):
         else:
             QMessageBox.warning(self, "Error", "Please enter student name!")
 
+    def createFolder(self):
+        try:
+            name_folder = self.ui.txtName.text()
+            path = "dataset/" + name_folder
+            # print(path)
+            if not os.path.exists(path):
 
+                os.makedirs(path)
+
+            else:
+                print("aahe")
+
+        except Exception as e:
+            print(e)
 
     def closeEvent(self, event):
         self.stop_camera()
