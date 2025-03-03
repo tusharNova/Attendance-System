@@ -20,10 +20,11 @@ class clsStudentScreen(QMainWindow):
         self.imgName = ""
         self.start_camera()
         self.db = clsDb()
+        self.imgCnt = 1
 
         self.ui.btnClikedImg.clicked.connect(self.captureStudentImage)
         self.ui.btnAddStd.clicked.connect(self.addStudent)
-        self.ui.btnSave.clicked.connect(self.createFolder)
+        # self.ui.btnSave.clicked.connect(self.createFolder)
 
         # self.start_camera()
 
@@ -48,18 +49,24 @@ class clsStudentScreen(QMainWindow):
             self.ui.labelVideo.clear
 
     def captureStudentImage(self):
-        # print("done")
+
         if self.current_frame is not None and self.ui.txtName.text():
-            folder = 'students'
+            folder = 'dataset/' + self.ui.txtName.text()
             os.makedirs(folder, exist_ok=True)
-            filename = os.path.join(folder, f"{self.ui.txtName.text()}.jpg")
-            # cv2.imwrite(filename, cv2.cvtColor(self.current_frame, cv2.COLOR_RGB2BGR))
-            cv2.imwrite(filename, self.current_frame)
-            QMessageBox.information(self, "Success", f"Image saved as {filename}")
+
+            if self.imgCnt < 6:
+                filename = os.path.join(folder, f"img{self.imgCnt}.jpg")
+                cv2.imwrite(filename, self.current_frame)
+                QMessageBox.information(self, "Success", f"Image saved and minimum 5 images number of is {self.imgCnt}")
+                self.imgCnt += 1
+            else:
+
+                QMessageBox.information(self, "Information", f"No need for more images")
         else:
             QMessageBox.warning(self, "Error", "Please enter student name and capture a valid image!")
 
     def addStudent(self):
+        print(self.imgCnt)
         name = self.ui.txtName.text()
         branch = self.ui.cmbBranch.currentText()
         sem = self.ui.cmbSem.currentText()
@@ -72,30 +79,20 @@ class clsStudentScreen(QMainWindow):
             self.gender = "Female"
         else:
             self.gender = "Other"
+        if self.imgCnt == 5:
 
-        query = "insert into StudentTable VALUES(null , '"+name+"', '"+branch+"' , '"+sem+"' , "+rollNo+" ,'"+email+"' ,'"+self.gender+"' ,'"+self.imgName+"' )"
-        print(query)
-        done = self.db.runSql(query)
-        # print(done)
-        if done:
-            QMessageBox.information(self, "Success", f"Student Add Success.")
-        else:
-            QMessageBox.warning(self, "Error", "Please enter student name!")
+            query = "insert into StudentTable VALUES(null , '"+name+"', '"+branch+"' , '"+sem+"' , "+rollNo+" ,'"+email+"' ,'"+self.gender+"' ,'"+self.imgName+"' )"
+            print(query)
+            done = self.db.runSql(query)
 
-    def createFolder(self):
-        try:
-            name_folder = self.ui.txtName.text()
-            path = "dataset/" + name_folder
-            # print(path)
-            if not os.path.exists(path):
-
-                os.makedirs(path)
-
+            if done:
+                QMessageBox.information(self, "Success", f"Student Add Success.")
             else:
-                print("aahe")
+                QMessageBox.warning(self, "Error", "Please enter student name!")
 
-        except Exception as e:
-            print(e)
+
+        else:
+            QMessageBox.warning(self, "Error", "Clicked Minimum 5 images of student!")
 
     def closeEvent(self, event):
         self.stop_camera()
