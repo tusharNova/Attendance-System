@@ -20,13 +20,16 @@ class clsStudentScreen(QMainWindow):
         self.imgName = ""
         self.start_camera()
         self.db = clsDb()
-        self.imgCnt = 1
+        self.imgCnt = 0
 
         self.ui.btnClikedImg.clicked.connect(self.captureStudentImage)
         self.ui.btnAddStd.clicked.connect(self.addStudent)
-        # self.ui.btnSave.clicked.connect(self.createFolder)
 
-        # self.start_camera()
+        self.ui.btnSave.setHidden(1)
+        print(self.imgCnt)
+
+
+
 
 
     def start_camera(self):
@@ -49,16 +52,17 @@ class clsStudentScreen(QMainWindow):
             self.ui.labelVideo.clear
 
     def captureStudentImage(self):
-
+        print(self.imgCnt)
         if self.current_frame is not None and self.ui.txtName.text():
             folder = 'dataset/' + self.ui.txtName.text()
             os.makedirs(folder, exist_ok=True)
 
-            if self.imgCnt < 6:
+            if self.imgCnt < 5:
                 filename = os.path.join(folder, f"img{self.imgCnt}.jpg")
                 cv2.imwrite(filename, self.current_frame)
                 QMessageBox.information(self, "Success", f"Image saved and minimum 5 images number of is {self.imgCnt}")
                 self.imgCnt += 1
+                self.hidebtn()
             else:
 
                 QMessageBox.information(self, "Information", f"No need for more images")
@@ -66,7 +70,7 @@ class clsStudentScreen(QMainWindow):
             QMessageBox.warning(self, "Error", "Please enter student name and capture a valid image!")
 
     def addStudent(self):
-        print(self.imgCnt)
+
         name = self.ui.txtName.text()
         branch = self.ui.cmbBranch.currentText()
         sem = self.ui.cmbSem.currentText()
