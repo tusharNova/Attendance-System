@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>696</width>
-    <height>370</height>
+    <width>796</width>
+    <height>470</height>
    </rect>
   </property>
   <property name="font">
@@ -39,8 +39,8 @@
        <widget class="QLabel" name="labelVideo">
         <property name="minimumSize">
          <size>
-          <width>500</width>
-          <height>300</height>
+          <width>600</width>
+          <height>400</height>
          </size>
         </property>
         <property name="frameShape">
@@ -113,6 +113,7 @@
         </property>
         <property name="font">
          <font>
+          <family>Calibri</family>
           <pointsize>12</pointsize>
           <weight>75</weight>
           <bold>true</bold>
@@ -136,6 +137,7 @@
         </property>
         <property name="font">
          <font>
+          <family>Calibri</family>
           <pointsize>12</pointsize>
           <weight>75</weight>
           <bold>true</bold>
@@ -161,8 +163,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>696</width>
-     <height>21</height>
+     <width>796</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>

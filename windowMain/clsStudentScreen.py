@@ -18,14 +18,14 @@ class clsStudentScreen(QMainWindow):
         self.current_frame = None
         self.gender = None
         self.imgName = ""
-        # self.start_camera()
+        self.start_camera()
         self.db = clsDb()
 
         self.ui.btnClikedImg.clicked.connect(self.captureStudentImage)
         self.ui.btnAddStd.clicked.connect(self.addStudent)
         self.ui.btnSave.clicked.connect(self.createFolder)
 
-
+        # self.start_camera()
 
 
     def start_camera(self):
